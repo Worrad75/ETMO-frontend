@@ -12,25 +12,52 @@ export default class LandingPage extends React.Component {
         currentUser: null
     }
 
-    responseGoogle =(response)=> {
-        console.log(response);
+    componentDidMount() {
+        let user_id = localStorage.user_id
+        if (user_id) {
+            console.log("auto login successful! Welcome back.")
+            fetch("http://localhost:3000/auto_login", {
+                headers: {
+                    Authorization: user_id
+                }
+            })
+            .then(resp => resp.json())
+            .then(response => console.log(response))
+            // .then(response => {
+            //     if (response.errors) {
+            //         alert(response.errors)
+            //     } else {
+            //         this.setUser(response)
+            //     }
+            // })
+
+        } else {
+            console.log("auto login unsuccessful")
+        }
+        
     }
 
     setUser =(user)=> {
         this.setState({
             currentUser: user
-        }, () => { this.redirect_to("newPageRoute") })
+        }, () => {
+            localStorage.user_id = user.id
+            this.redirect_to("newPageRoute")
+        })
     }
 
     logout =()=> {
         this.setState({
             currentUser: null
-        }, () => { this.redirect_to("newPageRoute") })
+        }, () => {
+            localStorage.clear()
+            this.redirect_to("newPageRoute")
+        })
     }
 
     redirect_to =(route)=> {
         console.log("this func will eventually redirect to: ", route)
-        this.props.history.push(`/${route}`)
+        // this.props.history.push(`/${route}`)
     }
 
     render() {
@@ -38,23 +65,6 @@ export default class LandingPage extends React.Component {
             <div>
                 -- ETMO --
                 <br/>
-                {/* <GoogleLogin
-                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={this.responseGoogle}
-                    onFailure={this.responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
-
-
-                <FacebookLogin
-                    appId="2755443464468150"
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    onClick={componentClicked}
-                    callback={responseFacebook} />  */}
-
-
                 {/* <MainContainer /> */}
 
                 <Login setUser={this.setUser} />
