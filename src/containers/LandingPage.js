@@ -1,14 +1,10 @@
 import React from "react";
-// import MainContainer from "./MainContainer"
+import MainContainer from "./MainContainer"
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { connect } from "react-redux"
 
 class LandingPage extends React.Component {
-
-    // state = {
-    //     currentUser: null
-    // }
 
     componentDidMount() {
         let user_id = localStorage.user_id
@@ -20,16 +16,14 @@ class LandingPage extends React.Component {
                 }
             })
             .then(resp => resp.json())
-            .then(response => console.log(response))
             .then(response => {
-                console.log("response:", response)
+                console.log(response)
                 if (response !== undefined && !!response.errors) {
                     this.setUser(response)
                 } else if (response !== undefined && response.errors){
                     alert(response.errors)
                 }
             })
-
         } else {
             console.log("auto login unsuccessful")
         }
@@ -37,14 +31,12 @@ class LandingPage extends React.Component {
 
     setUser =(user)=> {
         this.props.loginUser(user)
-        localStorage.user_id = user.id
-        this.redirect_to("newPageRoute")
+        this.redirect_to("ProfilePage")
     }
 
     logout =()=> {
         this.props.logoutUser()
-        localStorage.clear()
-        this.redirect_to("newPageRoute")
+        this.redirect_to("LandingPage")
     }
 
     redirect_to =(route)=> {
@@ -53,12 +45,12 @@ class LandingPage extends React.Component {
     }
 
     render() {
-        console.log("current user:", this.props.currentUser)
+        // console.log("current user:", this.props.currentUser)
         return( 
             <div>
                 -- ETMO --
                 <br/>
-                {/* <MainContainer /> */}
+                <MainContainer />
 
                 <Login setUser={this.setUser}/> 
                 <Signup setUser={this.setUser}/> 
