@@ -31,17 +31,17 @@ class LandingPage extends React.Component {
 
     setUser =(user)=> {
         this.props.loginUser(user)
-        this.redirect_to("ProfilePage")
+        this.redirect_to("profile")
     }
 
     logout =()=> {
         this.props.logoutUser()
-        this.redirect_to("LandingPage")
+        this.redirect_to("home")
     }
 
     redirect_to =(route)=> {
         console.log("this func will eventually redirect to: ", route)
-        // this.props.history.push(`/${route}`)
+        this.props.history.push(`/${route}`)
     }
 
     render() {
@@ -50,7 +50,7 @@ class LandingPage extends React.Component {
             <div>
                 -- ETMO --
                 <br/>
-                <MainContainer />
+                {/* <MainContainer /> */}
 
                 <Login setUser={this.setUser}/> 
                 <Signup setUser={this.setUser}/> 

@@ -1,6 +1,6 @@
 const defaultState = {
     currentUser: null,
-    currentWord: "example"
+    currentWord: ""
 }
 
 function reducer(prevState = defaultState, action) {
@@ -14,7 +14,7 @@ function reducer(prevState = defaultState, action) {
             localStorage.user_id = action.payload.id
             return { ...prevState, currentUser: action.payload}
         case "CHANGE_WORD":
-            console.log("changing word: ", action.payload)
+            console.log("WORD IN REDUCER: ", action.payload)
             return {...prevState, currentWord: action.payload}
         default:
             return prevState

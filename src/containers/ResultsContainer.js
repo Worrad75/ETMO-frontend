@@ -13,30 +13,34 @@ class ResultsContainer extends React.Component {
         this.getWordInfo()
     }
 
-    componentDidUpdate(){
-        // this.getWordInfo()
+    componentDidUpdate(prevProps){
+        if (prevProps.currentWord !== this.props.currentWord) {
+            this.getWordInfo()
+        }
     }
 
     getWordInfo = () => {
         // https://cors-anywhere.herokuapp.com/ ------>>> allows us to mimmick a backend request to the API from our frontend
         // https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord} ------>>> our API payload path
-        console.log("current word: ", this.props.currentWord)
-        fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord}`, {
-            method: "GET",
-            headers: {
-                "app_key": "c2340027dab4d00e48ec8dc3e435d6ab",
-                "app_id": "d654645f",
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-        .then(resp => resp.json())
-        .then(data => this.setState({
-            wordOBJ: data
-        }))
+        if (this.props.currentWord !=="") {
+            console.log("CURRENT WORD BEFORE FETCH: ", this.props.currentWord)
+            fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord}`, {
+                method: "GET",
+                headers: {
+                    "app_key": "c2340027dab4d00e48ec8dc3e435d6ab",
+                    "app_id": "d654645f",
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+            }})
+            .then(resp => resp.json())
+            .then(data => this.setState({
+                wordOBJ: data
+            }))
+        }
     }
 
     render() {
+        console.log("id: ", this.state.wordOBJ)
         return (
             <div>
                 "results container"

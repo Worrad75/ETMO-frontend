@@ -4,7 +4,7 @@ import ResultComponent from "./ResultComponent"
 export default function Result(props) {
 
     if (props.wordOBJ){
-
+        console.log("REACHED RESULT")
         // let examples = props.wordOBJ.entries[0].senses[0].examples.map(exp => <ResultComponent id={exp} comp={exp} />)
         let etymologies = props.wordOBJ.entries[0].etymologies.map(ety => <ResultComponent id={ety} comp={ety} key={ety} />)
         let definitions = props.wordOBJ.entries[0].senses[0].definitions.map(def => <ResultComponent id={def} comp={def} key={def} />)
@@ -27,6 +27,8 @@ export default function Result(props) {
                 Phonetic Spelling: {phoneticSpellingComp}
                 {/* <br />          this is broken for some reason
                 Examples: {examples} */}
+                <br /><br />
+                
             </div>
         )
     } else {
