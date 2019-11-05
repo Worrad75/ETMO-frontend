@@ -21,7 +21,7 @@ class SearchForm extends React.Component {
     }
 
     render() {
-        // console.log("re-rendering search form")
+        console.log("re-rendering search form", this.props.currentUser)
         return (
             <div>
                 <h3>SEARCH FORM</h3>
@@ -43,4 +43,10 @@ function mdp(dispatch) {
     }
 }
 
-export default connect(null, mdp)(SearchForm)
+function msp(storedState) {
+    return {
+        currentUser: storedState.currentUser
+    }
+}
+
+export default connect(msp, mdp)(SearchForm)

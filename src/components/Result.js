@@ -1,38 +1,54 @@
 import React from "react";
 import ResultComponent from "./ResultComponent"
+import { connect } from 'react-redux'
 
-export default function Result(props) {
+class Result extends React.Component {
 
-    if (props.wordOBJ){
-        console.log("REACHED RESULT")
-        // let examples = props.wordOBJ.entries[0].senses[0].examples.map(exp => <ResultComponent id={exp} comp={exp} />)
-        let etymologies = props.wordOBJ.entries[0].etymologies.map(ety => <ResultComponent id={ety} comp={ety} key={ety} />)
-        let definitions = props.wordOBJ.entries[0].senses[0].definitions.map(def => <ResultComponent id={def} comp={def} key={def} />)
-        let dialects = props.wordOBJ.pronunciations[0].dialects.map(dia => <ResultComponent id={dia} comp={dia} key={dia} />)
+    
+    render() {
+        
+        let addFavButton = <button>add favorite</button>
+        if (this.props.wordOBJ){
+            console.log("REACHED RESULT")
+            console.log("current user: ", this.props.currentUser)
+            // let examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exp => <ResultComponent id={exp} comp={exp} />)
+            let etymologies = this.props.wordOBJ.entries[0].etymologies.map(ety => <ResultComponent id={ety} comp={ety} key={ety} />)
+            let definitions = this.props.wordOBJ.entries[0].senses[0].definitions.map(def => <ResultComponent id={def} comp={def} key={def} />)
+            let dialects = this.props.wordOBJ.pronunciations[0].dialects.map(dia => <ResultComponent id={dia} comp={dia} key={dia} />)
+            
+            let phoneticSpelling = this.props.wordOBJ.pronunciations[0].phoneticSpelling
+            let phoneticSpellingComp = <ResultComponent id={phoneticSpelling} comp={phoneticSpelling} /> 
+            
+            // debugger
+            return (
+                <div>
+                    result:
+                    <br/>
+                    Etymologies: {etymologies}
+                    <br />
+                    Definitions: {definitions}
+                    <br />
+                    Dialects: {dialects}
+                    <br />
+                    Phonetic Spelling: {phoneticSpellingComp}
+                    {/* <br />          this is broken for some reason
+                    Examples: {examples} */}
+                    <br /><br />
+                    {this.props.currentUser ? addFavButton : ""}
+                </div>
+            )
+        } else {
+            return ("")
+        }
+    } // end of render method
+        
+} // end of Result class
 
-        let phoneticSpelling = props.wordOBJ.pronunciations[0].phoneticSpelling
-        let phoneticSpellingComp = <ResultComponent id={phoneticSpelling} comp={phoneticSpelling} /> 
 
-
-        return (
-            <div>
-                result:
-                <br/>
-                Etymologies: {etymologies}
-                <br />
-                Definitions: {definitions}
-                <br />
-                Dialects: {dialects}
-                <br />
-                Phonetic Spelling: {phoneticSpellingComp}
-                {/* <br />          this is broken for some reason
-                Examples: {examples} */}
-                <br /><br />
-                
-            </div>
-        )
-    } else {
-        return ("")
+function msp(storedState) {
+    return {
+        currentUser: storedState.currentUser
     }
-
 }
+
+export default connect(msp, {})(Result)

@@ -40,7 +40,8 @@ class LandingPage extends React.Component {
     }
 
     redirect_to =(route)=> {
-        console.log("this func will eventually redirect to: ", route)
+        console.log(" current user: ", this.props.currentUser)
+        console.log("redirected to: ", route)
         this.props.history.push(`/${route}`)
     }
 
@@ -54,7 +55,7 @@ class LandingPage extends React.Component {
 
                 <Login setUser={this.setUser}/> 
                 <Signup setUser={this.setUser}/> 
-                <button onClick={this.logout} >Logout</button>
+                <button onClick={this.logout}> Logout </button>
             </div>
         )
     }

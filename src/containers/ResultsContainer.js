@@ -40,7 +40,6 @@ class ResultsContainer extends React.Component {
     }
 
     render() {
-        console.log("id: ", this.state.wordOBJ)
         return (
             <div>
                 "results container"
