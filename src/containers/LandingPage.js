@@ -47,15 +47,18 @@ class LandingPage extends React.Component {
 
     render() {
         // console.log("current user:", this.props.currentUser)
+
+        let forms = <div>
+            <Login setUser={this.setUser} />
+            <Signup setUser={this.setUser} />
+        </div>
+
         return( 
             <div>
                 -- ETMO --
                 <br/>
-                {/* <MainContainer /> */}
-
-                <Login setUser={this.setUser}/> 
-                <Signup setUser={this.setUser}/> 
-                <button onClick={this.logout}> Logout </button>
+                
+                {localStorage.user_id ? <button onClick={this.logout}> Logout </button> : forms}
             </div>
         )
     }
