@@ -18,7 +18,7 @@ class ResultsContainer extends React.Component {
             this.getWordInfo()
         }
     }
-
+    // old api key: "c2340027dab4d00e48ec8dc3e435d6ab"
     getWordInfo = () => {
         // https://cors-anywhere.herokuapp.com/ ------>>> allows us to mimmick a backend request to the API from our frontend
         // https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord} ------>>> our API payload path
@@ -27,7 +27,7 @@ class ResultsContainer extends React.Component {
             fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord}`, {
                 method: "GET",
                 headers: {
-                    "app_key": "c2340027dab4d00e48ec8dc3e435d6ab",
+                    "app_key": "d74a79862ef3f90d5b905ec44edd634e",
                     "app_id": "d654645f",
                     "Content-Type": "application/json",
                     "Accept": "application/json"
@@ -40,6 +40,7 @@ class ResultsContainer extends React.Component {
     }
 
     render() {
+        console.log(this.state.wordOBJ)
         return (
             <div>
                 "results container"

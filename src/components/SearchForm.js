@@ -11,10 +11,11 @@ class SearchForm extends React.Component {
         e.preventDefault()
         console.log("submitted: ", searchTerm)
         this.props.changeWord(searchTerm.toLowerCase())
+        console.log("redirected to: result")
+        this.props.history.push(`/result`)
     }
 
     onChange = e => {
-        // console.log("changing: ", this.state.searchTerm)
         this.setState({
             [e.target.name]: e.target.value
         })
