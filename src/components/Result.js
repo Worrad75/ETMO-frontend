@@ -11,7 +11,7 @@ class Result extends React.Component {
                 "Content-Type": "application/json",
                 Accept: "application/json"
             },
-            body: JSON.stringify({ word: this.props.key, user_id: this.props.currentUser.id})
+            body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id})
         })
         .then(resp => resp.json())
         .then(response => {
@@ -19,6 +19,25 @@ class Result extends React.Component {
         })
     }
 
+    addSearch = () => {
+        fetch("http://localhost:3000/new_search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id })
+        })
+            .then(resp => resp.json())
+            .then(response => {
+                console.log(response)
+                debugger
+            })
+    }
+
+    componentDidMount() {
+        this.addSearch()
+    }
 
     render() {
         let addFavButton = <button onClick={this.addFavorite} >add favorite</button>

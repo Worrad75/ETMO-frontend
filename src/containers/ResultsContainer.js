@@ -5,8 +5,7 @@ import { connect } from 'react-redux'
 class ResultsContainer extends React.Component {
 
     state = {
-        // The full hash that is collected from the API call
-        wordOBJ: {}
+        wordOBJ: {} // The full hash that is collected from the API call
     }
 
     componentDidMount() {
@@ -18,16 +17,15 @@ class ResultsContainer extends React.Component {
             this.getWordInfo()
         }
     }
-    // old api key: "c2340027dab4d00e48ec8dc3e435d6ab"
     getWordInfo = () => {
-        // https://cors-anywhere.herokuapp.com/ ------>>> allows us to mimmick a backend request to the API from our frontend
-        // https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord} ------>>> our API payload path
-        if (this.props.currentWord !=="") {
+        if (this.props.currentWord !== "") {
             console.log("CURRENT WORD BEFORE FETCH: ", this.props.currentWord)
+            // https://cors-anywhere.herokuapp.com/ ------>>> allows us to mimmick a backend request to the API from our frontend
+            // https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord} ------>>> our API payload path
             fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord}`, {
                 method: "GET",
                 headers: {
-                    "app_key": "d74a79862ef3f90d5b905ec44edd634e",
+                    "app_key": "de1bbe7446ae29aaaa81cc33a682a9bf",
                     "app_id": "d654645f",
                     "Content-Type": "application/json",
                     "Accept": "application/json"
