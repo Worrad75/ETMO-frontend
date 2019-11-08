@@ -6,56 +6,28 @@ import { connect } from "react-redux"
 
 class LandingPage extends React.Component {
 
-    componentDidMount() {
-        let user_id = localStorage.user_id
-        if (user_id) {
-            console.log("auto login successful! Welcome back.")
-            fetch("http://localhost:3000/auto_login", {
-                headers: {
-                    Authorization: user_id
-                }
-            })
-            .then(resp => resp.json())
-            .then(response => {
-                console.log(response)
-                if (response !== undefined && !!response.errors) {
-                    this.setUser(response)
-                } else if (response !== undefined && response.errors){
-                    alert(response.errors)
-                }
-            })
-        } else {
-            console.log("auto login unsuccessful")
-        }
-    }
-
-    setUser =(user)=> {
+    setUser = (user) => {
         this.props.loginUser(user)
         this.redirect_to("profile")
     }
 
-    logout =()=> {
+    logout = () => {
         this.props.logoutUser()
         this.redirect_to("home")
     }
 
-    redirect_to =(route)=> {
-        console.log(" current user: ", this.props.currentUser)
-        console.log("redirected to: ", route)
-        this.props.history.push(`/${route}`)
-    }
 
     render() {
-        // console.log("current user:", this.props.currentUser)
-
         let loggedOut = 
             <><Login setUser={this.setUser} />
             <Signup setUser={this.setUser} /></>
 
         let loggedIn = 
-            <><button onClick={() => this.props.history.push("profile")}>GO TO PROFILE</button>
-            <br/>
-            <button onClick={this.logout}> Logout </button></>
+            <>
+                <button onClick={() => this.props.history.push("profile")}>GO TO PROFILE</button>
+                <br/>
+                <button onClick={this.logout}> Logout </button>
+            </>
         return( 
             <div>
                 -- ETMO --
@@ -74,10 +46,10 @@ function msp(storedState){
     }
 }
 
-function mdp(dispatch){
+function mdp(dispatch) {
     return {
-        logoutUser: () => { dispatch({type: "LOGOUT"}) },
-        loginUser: (user) => { dispatch({type: "LOGIN", payload: user}) }
+        logoutUser: () => { dispatch({ type: "LOGOUT" }) },
+        loginUser: (user) => { dispatch({ type: "LOGIN", payload: user }) }
     }
 }
 

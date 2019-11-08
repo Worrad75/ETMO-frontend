@@ -1,6 +1,6 @@
 import React from "react";
-import ResultComponent from "./ResultComponent"
-import { connect } from 'react-redux'
+import ResultComponent from "./ResultComponent";
+import { connect } from 'react-redux';
 
 class Result extends React.Component {
 
@@ -15,7 +15,9 @@ class Result extends React.Component {
         })
         .then(resp => resp.json())
         .then(response => {
-            console.log(response)
+            console.log("favorite: ", response)
+            console.log("redirecting to profile")
+            // this.props.history.push(`/profile`)
         })
     }
 
@@ -28,11 +30,11 @@ class Result extends React.Component {
             },
             body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id })
         })
-            .then(resp => resp.json())
-            .then(response => {
-                console.log(response)
-                debugger
-            })
+        .then(resp => resp.json())
+        .then(response => {
+            console.log("search: ", response)
+            debugger
+        })
     }
 
     componentDidMount() {
@@ -40,6 +42,7 @@ class Result extends React.Component {
     }
 
     render() {
+        // this.addSearch()
         let addFavButton = <button onClick={this.addFavorite} >add favorite</button>
 
         if (this.props.wordOBJ){

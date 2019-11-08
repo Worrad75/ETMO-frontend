@@ -22,7 +22,7 @@ class SearchForm extends React.Component {
     }
 
     render() {
-        console.log("re-rendering search form", this.props.currentUser)
+        console.log("re-rendering search form", this.props)
         return (
             <div>
                 <h3>SEARCH FORM</h3>
