@@ -26,6 +26,13 @@ class LandingPage extends React.Component {
         })
     }
 
+    scrollDown = () => {
+        window.scroll({
+            top: 810,
+            behavior: 'smooth'
+        })
+    }
+
     render() { 
         let loggedOut = {}
             if (this.state.toggleLoginSignup) {
@@ -45,11 +52,11 @@ class LandingPage extends React.Component {
         return( 
             <>
                 <div className="parallax" >
+                    <a id="explore" onClick={()=> this.scrollDown()}>EXPLORE</a>
                 </div>
                 <div className="middle-stripe-landing-page">
-                    <br />
-                    <br /><br /><br /><br /><br />
-                Words are powerful. Find yours.
+                    <br /><br /><br /><br /><br /><br />
+                    Words are powerful. Find yours.
                 </div>
                     {localStorage.user_id ? loggedIn : loggedOut}
                 <div className="parallax"></div>
