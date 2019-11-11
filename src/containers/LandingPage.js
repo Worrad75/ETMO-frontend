@@ -1,5 +1,5 @@
 import React from "react";
-import MainContainer from "./MainContainer"
+// import MainContainer from "./MainContainer"
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { connect } from "react-redux"
@@ -36,29 +36,35 @@ class LandingPage extends React.Component {
     render() { 
         let loggedOut = {}
             if (this.state.toggleLoginSignup) {
-                loggedOut = <>
+                loggedOut = <div className="ETMO-blue">
                 <Login setUser={this.setUser} /><br/>
-                    <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p></>
+                    <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
+                    </div>
             } else {
-                loggedOut = <>
+                loggedOut = <div className="ETMO-blue">
                 <Signup setUser={this.setUser} /><br />
-                <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p></>
+                <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
+                </div>
             }
 
         let loggedIn = 
-            <><button onClick={() => this.props.history.push("profile")}>GO TO PROFILE</button><br/>
-                <button onClick={() => this.props.history.push("search")}>GO TO SEARCH</button><br />
-                <button onClick={this.logout}> Logout </button></>
-        return( 
+            <div className="ETMO-blue">
+                <button className="submit" id="to-left" onClick={() => this.props.history.push("profile")}>PROFILE</button>
+                <button className="submit" id="to-right" onClick={() => this.props.history.push("search")}>SEARCH</button><br />
+                <button className="submit" onClick={this.logout}> LOGOUT </button>
+                <br /><br /><br /><br />
+            </div>
+        
+        return(
             <>
                 <div className="parallax" >
                     <a id="explore" onClick={()=> this.scrollDown()}>EXPLORE</a>
                 </div>
                 <div className="middle-stripe-landing-page">
-                    <br /><br /><br /><br /><br /><br />
+                    <br /><br /><br /><br />
                     Words are powerful. Find yours.
                 </div>
-                    {localStorage.user_id ? loggedIn : loggedOut}
+                {localStorage.user_id ? loggedIn : loggedOut}
                 <div className="parallax"></div>
             </>
         )

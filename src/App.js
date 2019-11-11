@@ -1,10 +1,10 @@
 import React from 'react';
-import "./App.css"
+import "./App.css";
 import LandingPage from "./containers/LandingPage"
 import { Switch, Route, withRouter } from "react-router-dom";
 import PersonalContainer from './containers/PersonalContainer';
 import SearchForm from './components/SearchForm';
-import Result from './components/Result';
+// import Result from './components/Result';
 import ResultsContainer from './containers/ResultsContainer';
 import { connect } from 'react-redux';
 
@@ -50,7 +50,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <img id="logo"></img>
+        <img id="logo" alt="ETMO-logo"></img>
         <Switch>
           <Route path="/home" component={LandingPage} />
           <Route path="/profile" component={PersonalContainer} />

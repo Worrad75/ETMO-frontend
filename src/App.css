@@ -20,13 +20,41 @@
   background-color: aliceblue;
 }
 
+.favorites_cont {
+  display: inline-block;
+  align-content: center;
+  top: -200px;
+}
+
+.history_cont {
+  display: inline-block;
+}
+
 #search-spinner {
   height: 300px;
   width: auto;
 }
 
+#explore {
+  position:relative; top: 250px;
+  font-size: 60px;
+  cursor: pointer;
+}
+
+#to-left {
+  position:relative; left: -100px;
+}
+
+#to-right {
+  position:relative; right: -100px;
+}
+
+.ETMO-blue {
+  background-color: aliceblue;
+}
+
 .middle-stripe-landing-page {
-  height: 250px;
+  height: 200px;
   background-color: aliceblue;
   font-family: "Ubuntu";
   font-size: 45px;
@@ -35,8 +63,6 @@
 .form {
   height: 300px;
 }
-
-
 
 /* LOGIN // SIGNUP BUTTONS */
 
@@ -143,11 +169,7 @@ a {
 }
 
 
-#explore {
-  position:relative; top: 250px;
-  font-size: 60px;
-  cursor: pointer;
-}
+
 
 /* This is for the parallax scroll */
 .parallax {
