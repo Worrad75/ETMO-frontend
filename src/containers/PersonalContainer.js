@@ -9,8 +9,7 @@ class PersonalContainer extends React.Component {
         console.log("USER IN PERSONAL CONT:", this.props.currentUser)
         if (this.props.currentUser) {
             return (
-                <div>
-                    "personal container"
+                <div id="personal-container">
                     <br />
                     <button onClick={()  => this.props.history.push("search")}>GO TO SEARCH</button>
                     <br />

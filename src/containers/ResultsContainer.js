@@ -1,6 +1,7 @@
 import React from "react";
 import Result from "../components/Result"
 import { connect } from 'react-redux'
+// import spinner from '../assets/spinner.gif'
 
 class ResultsContainer extends React.Component {
 
@@ -8,10 +9,10 @@ class ResultsContainer extends React.Component {
         wordOBJ: {} // The full hash that is collected from the API call
     }
 
-    componentDidMount() {
-        console.log("props", this.props)
-        this.getWordInfo()
-    }
+    // componentDidMount() {
+    //     console.log("props", this.props)
+    //     this.getWordInfo()
+    // }
 
     componentDidUpdate(prevProps){
         if (prevProps.currentWord !== this.props.currentWord) {
@@ -32,19 +33,20 @@ class ResultsContainer extends React.Component {
                     "Accept": "application/json"
             }})
             .then(resp => resp.json())
-            .then(data => this.setState({
+            .then(data => 
+                this.setState({
                 wordOBJ: data
-            }))
+            })
+            )
         }
     }
 
     render() {
-        console.log(this.state.wordOBJ)
         return (
             <div>
-                "results container"
                 <br />
-                {this.state.wordOBJ.id ? <Result key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : ""}
+                {/* {this.state.wordOBJ.id ? <Result key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />} */}
+                {<img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
             </div>
         )
     }

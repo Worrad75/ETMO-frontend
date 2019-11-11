@@ -9,9 +9,7 @@ class SearchForm extends React.Component {
 
     submitHandler = (e, searchTerm) => {
         e.preventDefault()
-        console.log("submitted: ", searchTerm)
         this.props.changeWord(searchTerm.toLowerCase())
-        console.log("redirected to: result")
         this.props.history.push(`/result`)
     }
 
@@ -22,7 +20,6 @@ class SearchForm extends React.Component {
     }
 
     render() {
-        console.log("re-rendering search form", this.props)
         return (
             <div>
                 <h3>SEARCH FORM</h3>

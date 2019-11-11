@@ -17,7 +17,7 @@ class Result extends React.Component {
         .then(response => {
             console.log("favorite: ", response)
             console.log("redirecting to profile")
-            // this.props.history.push(`/profile`)
+            this.props.history.push(`/profile`)
         })
     }
 
@@ -33,7 +33,6 @@ class Result extends React.Component {
         .then(resp => resp.json())
         .then(response => {
             console.log("search: ", response)
-            debugger
         })
     }
 
@@ -42,12 +41,11 @@ class Result extends React.Component {
     }
 
     render() {
-        // this.addSearch()
-        let addFavButton = <button onClick={this.addFavorite} >add favorite</button>
+        let addFavButton = <button onClick={() => this.addFavorite()} >add favorite</button>
 
         if (this.props.wordOBJ){
-            console.log("REACHED RESULT")
-            console.log("current user: ", this.props.currentUser)
+            // console.log("REACHED RESULT")
+            // console.log("current user: ", this.props.currentUser)
 
             let etymologies = ""
             let definitions = ""

@@ -42,12 +42,12 @@ export default class Signup extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Enter Username" />
-                    <input name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter Password" />
-                    <input name="passwordConfirmation" value={this.state.passwordConfirmation} onChange={this.handleChange} placeholder="Confirm Password" />
-
-                    <button className="signup" type="submit" >Signup</button>
+                <form className="form" onSubmit={this.handleSubmit}>
+                    <input className="un" name="username" value={this.state.username} onChange={this.handleChange} placeholder="Enter Username" type="text" />
+                    <input className="pass" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter Password" type="password" />
+                    <input className="pass" name="passwordConfirmation" value={this.state.passwordConfirmation} onChange={this.handleChange} placeholder="Confirm Password" type="password" />
+                    <br/>
+                    <button className="submit" type="submit" >Signup</button>
                 </form>
             </div>
         )
