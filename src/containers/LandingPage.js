@@ -3,6 +3,7 @@ import React from "react";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { connect } from "react-redux"
+import "../hover_me.css"
 
 class LandingPage extends React.Component {
 
@@ -60,7 +61,17 @@ class LandingPage extends React.Component {
         return(
             <>
                 <div className="parallax" >
-                    <a id="explore" onClick={()=> this.scrollDown()}>EXPLORE</a>
+
+                    <div onClick={() => this.scrollDown()} id="circle-container">
+                        <div id="cc">
+                            <div className="circle" id="five"></div>
+                            <div className="circle" id="four"></div>
+                            <div className="circle" id="three"></div>
+                            <div className="circle" id="two"></div>
+                            <div className="circle" id="one"></div>
+                        </div>
+                    </div>
+                    {/* <a id="explore" onClick={()=> this.scrollDown()}>EXPLORE</a> */}
                 </div>
                 <div className="middle-stripe-landing-page">
                     <br /><br /><br /><br />

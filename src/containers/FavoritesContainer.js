@@ -8,7 +8,7 @@ export default class FavoritesContainer extends React.Component {
     // }
 
     render() {
-        // console.log("hitting fav cont", this.props.favorites)
+        console.log("in favs cont")
         let objs = this.props.favorites.map((favorite) => <Favorite key={favorite.id} favorite={favorite}></Favorite>)
         return (
             <div className="favorites_cont" id="to-left">

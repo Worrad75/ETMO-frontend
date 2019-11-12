@@ -8,7 +8,8 @@ class PersonalContainer extends React.Component {
     
     state = {
         historyFilter: "",
-        favoritesFilter: ""
+        favoritesFilter: "",
+        displayFavorites: true
     }
 
     componentDidMount() {
@@ -24,8 +25,15 @@ class PersonalContainer extends React.Component {
             [e.target.name]: e.target.value
         })
     }
+ 
+    flipDisplay = () => {
+        let opp = !this.state.displayFavorites
+        this.setState({
+            displayFavorites: opp
+        })
+    }
 
-    findNewFavs = () => {
+    findFavs = () => {
         if (!!this.props.currentUser && this.state.favoritesFilter !== "") {
             let faves = this.props.currentUser.favorites.filter(fav => fav.word.includes(this.state.favoritesFilter) )
             console.log("finding new favs:", faves)
@@ -35,39 +43,55 @@ class PersonalContainer extends React.Component {
         }
     }
 
+    findHistory = () => {
+        if (!!this.props.currentUser && this.state.historyFilter !== "") {
+            let faves = this.props.currentUser.searches.filter(fav => fav.word.includes(this.state.historyFilter))
+            console.log("finding new favs:", faves)
+            return faves
+        } else if (!!this.props.currentUser) {
+            return this.props.currentUser.searches
+        }
+    }
+
+
     render() {
-        let faves = this.findNewFavs()
+
+        console.log("display: ", this.state.displayFavorites)
+
+        let faves = [];
+        let hist = [];
+        if (this.state.displayFavorites) {
+            faves = this.findFavs()
+        } else {
+            hist = this.findHistory()
+        }
+
         if (this.props.currentUser) {
             return (
                 <div id="personal-container">
-                    {/* <br />
-                    <FavoritesContainer favorites={this.props.currentUser.favorites} />
-                    <HistoryContainer searches={this.props.currentUser.searches}/>
-                    <br />
-                    */}
                     <button className="submit" onClick={() => this.props.history.push("search")}>GO TO SEARCH</button> 
                     <div className="card">
                         
-                    <div className="post main">
-                        <div className="preview">This will show the number of <br/> favs and searches</div>
-                        <div className="counter">2nd</div>
-                        <div className="detail">Welcome Back,</div>
-                        <div className="details">{this.props.currentUser.username}</div>
-                    </div>
+                        <div className="post main">
+                            <div className="preview">This will show the number of <br/> favs and searches</div>
+                            <div className="counter">2nd</div>
+                            <div className="detail">Welcome Back,</div>
+                            <div className="details">{this.props.currentUser.username}</div>
+                        </div>
 
-                    <div className="personal-search">
-                            <input className="un" id="slim" name="favoritesFilter" value={this.state.favoritesFilter} onChange={this.handleChange} placeholder="Search Your Favorites" type="text" />
-                            <input className="un" id="slim" name="historyFilter" value={this.state.historyFilter} onChange={this.handleChange} placeholder="Search Your History" type="text" />
-                            <br /><br />
-                            {/* <button className="submit" onClick={() => this.findNewWords()} >Filter</button> */}
-                    </div>
+                        <div className="personal-search">
+                                <input className="un" id="slim" name="favoritesFilter" value={this.state.favoritesFilter} onChange={this.handleChange} placeholder="Search Your Favorites" type="text" />
+                                <input className="un" id="slim" name="historyFilter" value={this.state.historyFilter} onChange={this.handleChange} placeholder="Search Your History" type="text" />
+                                <br /><br />
+                        </div>
 
-                <div className="content">
-                            <div className="favs_cont">
-                                <FavoritesContainer favorites={faves}/>
-                                <br/>
-                                {/* history container */}
-                            </div>
+                        <label className="switch">
+                            <input onClick={this.flipDisplay} type="checkbox"></input>
+                            <span className="slider"></span>
+                        </label>
+
+                        <div className="content">
+                            {this.state.displayFavorites ? <div className="favs_cont"><FavoritesContainer favorites={faves} /></div> : <div className="hist_cont"><HistoryContainer history={hist} /></div>}
                         </div>
 
                         <div className="fabs">

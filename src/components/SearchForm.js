@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import "../search_form_animation.scss"
+import "../peeling_text.css"
 
 class SearchForm extends React.Component {
 
@@ -25,24 +26,25 @@ class SearchForm extends React.Component {
             <div>
                 <div>
                     <form className="word-search-form" onSubmit={(e) => this.submitHandler(e, this.state.searchTerm)}>
-                        <input type="text" className="un" name="searchTerm" placeholder="spelling of word" onChange={this.onChange} />
+                        <input type="text" className="un" name="searchTerm" placeholder="spelling" onChange={this.onChange} />
                         <br />
                         <input id="word-search-submit" className="submit" type="submit" value="Submit" />
                     </form>
                 </div>
 
 
-                <h1 data-heading="search any word">filler</h1>
+                <h1 className="any_word" data-heading="any word">filler</h1>
 
-                {/* <div id="container">
-                    MAKE
-                    <div id="flip">
-                        <div><div>Your</div></div>
-                        <div><div>Words</div></div>
-                        <div><div>Favorite</div></div>
-                    </div>
-                    SURE!
-                </div> */}
+
+                <p aria-label="CodePen">
+                    <span data-text="S">S</span>
+                    <span data-text="E">E</span>
+                    <span data-text="A">A</span>
+                    <span data-text="R">R</span>
+                    <span data-text="C">C</span>
+                    <span data-text="H">H</span>
+                    {/* <span data-text="N">N</span> */}
+                </p>
             </div>
         )
     }
@@ -64,13 +66,13 @@ export default connect(msp, mdp)(SearchForm)
 
 
 
-    // <div id="container">
-    //     Make
-    //     <div id ="flip">
-    //         <div><div>Darrow</div></div>
-    //         <div><div>Flatiron</div></div>
-    //         <div><div>beef</div></div>
-    //     </div>
-    //     AweSoMe!
-    // </div >
-    // <p>a css3 animation demo</p>
+
+/* <div id="container">
+                    understand
+                    <div id="flip">
+                        <div><div>Your</div></div>
+                        <div><div>Words</div></div>
+                        <div><div>Favorite</div></div>
+                    </div>
+                    better
+                </div> */

@@ -25,6 +25,11 @@
   top: -200px;
 }
 
+.any_word {
+  position: relative; bottom: -300px; left: 600px;
+  width: 400px;
+}
+
 .history_cont {
   display: inline-block;
 }
@@ -162,6 +167,7 @@ form.form1 {
   color: #E1BEE7;
   padding-top: 15px;
   cursor: pointer;
+  font-size: 2em;
 }
 
 a {
