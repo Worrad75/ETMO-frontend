@@ -18,13 +18,25 @@ class PersonalContainer extends React.Component {
         })
     }
 
-    handleSearch = (e) => {
+    handleChange = (e) => {
         e.preventDefault()
-        console.log("in search handler :)")
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    findNewFavs = () => {
+        if (!!this.props.currentUser && this.state.favoritesFilter !== "") {
+            let faves = this.props.currentUser.favorites.filter(fav => fav.word.includes(this.state.favoritesFilter) )
+            console.log("finding new favs:", faves)
+            return faves
+        } else if (!!this.props.currentUser) {
+            return this.props.currentUser.favorites
+        }
     }
 
     render() {
-        console.log("USER IN PERSONAL CONT:", this.props.currentUser)
+        let faves = this.findNewFavs()
         if (this.props.currentUser) {
             return (
                 <div id="personal-container">
@@ -36,7 +48,6 @@ class PersonalContainer extends React.Component {
                     <button className="submit" onClick={() => this.props.history.push("search")}>GO TO SEARCH</button> 
                     <div className="card">
                         
-                    {/* WHERE ARE WE */}
                     <div className="post main">
                         <div className="preview">This will show the number of <br/> favs and searches</div>
                         <div className="counter">2nd</div>
@@ -45,17 +56,15 @@ class PersonalContainer extends React.Component {
                     </div>
 
                     <div className="personal-search">
-                        <form onSubmit={(e)=> this.handleSearch(e)}>
-                                <input className="un" id="slim" name="favoritesFilter" value={this.state.username} onChange={this.handleChange} placeholder="Search Your Favorites" type="text" />
-                                <input className="un" id="slim" name="historyFilter" value={this.state.username} onChange={this.handleChange} placeholder="Search Your History" type="text" />
-                                <br /><br />
-                                <button className="submit" type="submit" >Filter</button>
-                        </form>
+                            <input className="un" id="slim" name="favoritesFilter" value={this.state.favoritesFilter} onChange={this.handleChange} placeholder="Search Your Favorites" type="text" />
+                            <input className="un" id="slim" name="historyFilter" value={this.state.historyFilter} onChange={this.handleChange} placeholder="Search Your History" type="text" />
+                            <br /><br />
+                            {/* <button className="submit" onClick={() => this.findNewWords()} >Filter</button> */}
                     </div>
 
                 <div className="content">
                             <div className="favs_cont">
-                                <FavoritesContainer favorites={this.props.currentUser.favorites}/>
+                                <FavoritesContainer favorites={faves}/>
                                 <br/>
                                 {/* history container */}
                             </div>

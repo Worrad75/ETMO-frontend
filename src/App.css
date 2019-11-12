@@ -2,7 +2,7 @@
 
 .App {
   text-align: center;
-  height: 1200px;
+  height: 900px;
   width: 100%;
   min-width: 100%;
   background-color: aliceblue;
@@ -21,7 +21,6 @@
 }
 
 .favorites_cont {
-  display: inline-block;
   align-content: center;
   top: -200px;
 }

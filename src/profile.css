@@ -16,7 +16,7 @@ body {
 /*  */
 
 .card {
-  height: 1100px;
+  height:750px;
   width: 750px;
   background: #fff;
   font-family: Roboto;
@@ -107,7 +107,7 @@ body {
 .content {
   position: absolute;
   width: 730px;
-  height: 700px;
+  height: 350px;
   margin: 10px;
   text-align: center;
   overflow-y: auto;

@@ -9,10 +9,10 @@ class ResultsContainer extends React.Component {
         wordOBJ: {} // The full hash that is collected from the API call
     }
 
-    // componentDidMount() {
-    //     console.log("props", this.props)
-    //     this.getWordInfo()
-    // }
+    componentDidMount() {
+        console.log("props", this.props)
+        this.getWordInfo()
+    }
 
     componentDidUpdate(prevProps){
         if (prevProps.currentWord !== this.props.currentWord) {
@@ -45,8 +45,8 @@ class ResultsContainer extends React.Component {
         return (
             <div>
                 <br />
-                {/* {this.state.wordOBJ.id ? <Result key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />} */}
-                {<img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
+                {this.state.wordOBJ.id ? <Result key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
+                {/* {<img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />} */}
             </div>
         )
     }
