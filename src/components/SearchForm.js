@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux'
+import "../search_form_animation.scss"
 
 class SearchForm extends React.Component {
 
@@ -22,14 +23,26 @@ class SearchForm extends React.Component {
     render() {
         return (
             <div>
-                <h3>SEARCH FORM</h3>
                 <div>
                     <form className="word-search-form" onSubmit={(e) => this.submitHandler(e, this.state.searchTerm)}>
-                        <input type="text" name="searchTerm" placeholder="spelling of word" onChange={this.onChange} />
+                        <input type="text" className="un" name="searchTerm" placeholder="spelling of word" onChange={this.onChange} />
                         <br />
-                        <input id="word-search-submit" type="submit" value="Submit" />
+                        <input id="word-search-submit" className="submit" type="submit" value="Submit" />
                     </form>
                 </div>
+
+
+                <h1 data-heading="search any word">filler</h1>
+
+                {/* <div id="container">
+                    MAKE
+                    <div id="flip">
+                        <div><div>Your</div></div>
+                        <div><div>Words</div></div>
+                        <div><div>Favorite</div></div>
+                    </div>
+                    SURE!
+                </div> */}
             </div>
         )
     }
@@ -48,3 +61,16 @@ function msp(storedState) {
 }
 
 export default connect(msp, mdp)(SearchForm)
+
+
+
+    // <div id="container">
+    //     Make
+    //     <div id ="flip">
+    //         <div><div>Darrow</div></div>
+    //         <div><div>Flatiron</div></div>
+    //         <div><div>beef</div></div>
+    //     </div>
+    //     AweSoMe!
+    // </div >
+    // <p>a css3 animation demo</p>

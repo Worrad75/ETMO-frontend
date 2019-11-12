@@ -11,8 +11,6 @@ export default class FavoritesContainer extends React.Component {
         let objs = this.state.favorites.map((favorite) => <Favorite key={favorite.id} favorite={favorite}></Favorite>)
         return (
             <div className="favorites_cont" id="to-left">
-                "favorites container"
-                <br />
                 {objs}
             </div>
         )

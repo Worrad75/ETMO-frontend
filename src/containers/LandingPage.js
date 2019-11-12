@@ -39,11 +39,13 @@ class LandingPage extends React.Component {
                 loggedOut = <div className="ETMO-blue">
                 <Login setUser={this.setUser} /><br/>
                     <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
+                    <br />
                     </div>
             } else {
                 loggedOut = <div className="ETMO-blue">
                 <Signup setUser={this.setUser} /><br />
                 <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
+                <br />
                 </div>
             }
 
