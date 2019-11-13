@@ -4,8 +4,19 @@ body {
   text-align: center;
 }
 
+/* MISC */
 
-/* custom */
+#history_color {
+  color: #d4e157;
+}
+
+#favorite_color {
+  color: #42a5f5;
+}
+
+#history_background {
+  background-color: #d4e157;;
+}
 
 #slim {
     /* padding: 0px 0px 0px 0px; */
@@ -13,9 +24,12 @@ body {
     margin-bottom: 10px;
 }
 
+#margin_50 {
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
 
 /* SLIDER */
-
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -23,14 +37,12 @@ body {
   width: 60px;
   height: 34px;
 }
-
 /* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 /* The slider */
 .slider {
   position: absolute;
@@ -44,7 +56,6 @@ body {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -56,40 +67,36 @@ body {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
   /* the color for searches */
   background-color: #d4e157;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px black;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
+
 /*  */
 
 .card {
-  height:750px;
+  height:975px;
   width: 750px;
   background: #fff;
   font-family: Roboto;
   display: block;
   position: relative;
-  margin: 50px auto;
+  margin: 50px auto; top: 50px;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.2s ease-in-out;
@@ -151,7 +158,7 @@ input:checked + .slider:before {
 }
 
 .fabs {
-  position: relative; top: -350px;
+  position: relative; top: -450px;
   margin-top: 0px;
   margin-left: 335px;
   overflow: hidden;
@@ -174,7 +181,7 @@ input:checked + .slider:before {
 .content {
   position: absolute;
   width: 730px;
-  height: 350px;
+  height: 450px;
   margin: 10px;
   text-align: center;
   overflow-y: auto;
@@ -255,17 +262,17 @@ input:checked + .slider:before {
   width: 100%;
   height: 70%;
   background: #42a5f5;
-  color: rgb(255, 102, 0);
+  color: rgb(0, 0, 0);
   text-shadow: 0px 2px 3px #555;
   font-weight: bold;
-  font: 18px Tahoma, Helvetica, Arial, Sans-Serif;
+  font: 36px Tahoma, Helvetica, Arial, Sans-Serif;
 }
 
 .sec>.counter {
   width: 20px;
   height: 20px;
   margin-left: 150px;
-  margin-top: -40px;
+  /* margin-top: -40px; */
 
 }
 

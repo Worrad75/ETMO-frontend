@@ -37,16 +37,20 @@ class LandingPage extends React.Component {
     render() { 
         let loggedOut = {}
             if (this.state.toggleLoginSignup) {
-                loggedOut = <div className="ETMO-blue">
-                <Login setUser={this.setUser} /><br/>
+                loggedOut =
+                <div className="ETMO-blue">
+                    <Login setUser={this.setUser} />
+                    <br/><br />
                     <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
                     <br />
-                    </div>
+                </div>
             } else {
-                loggedOut = <div className="ETMO-blue">
-                <Signup setUser={this.setUser} /><br />
-                <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
-                <br />
+                loggedOut =
+                <div className="ETMO-blue">
+                    <Signup setUser={this.setUser} />
+                    <br /><br />
+                    <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
+                    <br />
                 </div>
             }
 

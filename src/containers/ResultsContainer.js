@@ -2,11 +2,13 @@ import React from "react";
 import Result from "../components/Result"
 import { connect } from 'react-redux'
 // import spinner from '../assets/spinner.gif'
+import "../results.css"
 
 class ResultsContainer extends React.Component {
 
     state = {
-        wordOBJ: {} // The full hash that is collected from the API call
+        wordOBJ: {}, // The full hash that is collected from the API call
+        lang: "en-us"
     }
 
     componentDidMount() {
@@ -19,12 +21,23 @@ class ResultsContainer extends React.Component {
             this.getWordInfo()
         }
     }
+
+    handleErrors = (response) => {
+        if (!response.ok) {
+            // throw Error(response.statusText);
+            alert("Something went wrong. You will now be redirected to the search page.")
+            this.props.history.push("search")
+        }
+        return response;
+    }
+
     getWordInfo = () => {
         if (this.props.currentWord !== "") {
+            console.log("CURRENT LANG BEFORE FETCH: ", this.props.currentLang)
             console.log("CURRENT WORD BEFORE FETCH: ", this.props.currentWord)
             // https://cors-anywhere.herokuapp.com/ ------>>> allows us to mimmick a backend request to the API from our frontend
             // https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord} ------>>> our API payload path
-            fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/en-us/${this.props.currentWord}`, {
+            fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/${this.props.currentLang}/${this.props.currentWord}`, {
                 method: "GET",
                 headers: {
                     "app_key": "de1bbe7446ae29aaaa81cc33a682a9bf",
@@ -32,20 +45,24 @@ class ResultsContainer extends React.Component {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
             }})
+            .then(this.handleErrors)
             .then(resp => resp.json())
             .then(data => 
                 this.setState({
                 wordOBJ: data
-            })
-            )
+            }))
+            .catch(error => console.log(error));
         }
     }
 
     render() {
+        if (this.state.wordOBJ.results) {
+            console.log(this.state.wordOBJ.results[0].lexicalEntries[0])
+        }
         return (
             <div>
                 <br />
-                {this.state.wordOBJ.id ? <Result key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
+                {this.state.wordOBJ.id ? <Result history={this.props.history} key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
                 {/* {<img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />} */}
             </div>
         )
@@ -55,7 +72,8 @@ class ResultsContainer extends React.Component {
 
 function msp(storedState) {
     return {
-        currentWord: storedState.currentWord
+        currentWord: storedState.currentWord,
+        currentLang: storedState.currentLang
     }
 }
 

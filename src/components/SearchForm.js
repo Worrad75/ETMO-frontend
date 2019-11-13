@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import "../search_form_animation.scss"
 import "../peeling_text.css"
+import "../results.css"
 
 class SearchForm extends React.Component {
 
@@ -15,6 +16,12 @@ class SearchForm extends React.Component {
         this.props.history.push(`/result`)
     }
 
+    langChange = (e) => {
+        e.preventDefault()
+        this.props.changeLanguage(e.target.value)
+        // this.props.history.push(`/search`) ??
+    }
+
     onChange = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -24,6 +31,7 @@ class SearchForm extends React.Component {
     render() {
         return (
             <div>
+                
                 <div>
                     <form className="word-search-form" onSubmit={(e) => this.submitHandler(e, this.state.searchTerm)}>
                         <input type="text" className="un" name="searchTerm" placeholder="spelling" onChange={this.onChange} />
@@ -32,8 +40,16 @@ class SearchForm extends React.Component {
                     </form>
                 </div>
 
+                <div className="box">
+                    <select onChange={this.langChange}>
+                        <option value="en-us" >American English</option>
+                        <option value="es" >Spanish</option>
+                        <option value="en" >German</option>
+                    </select>
+                </div>
 
-                <h1 className="any_word" data-heading="any word">filler</h1>
+
+                {/* <h1 className="any_word" data-heading="any word">filler</h1> */}
 
 
                 <p aria-label="CodePen">
@@ -45,6 +61,19 @@ class SearchForm extends React.Component {
                     <span data-text="H">H</span>
                     {/* <span data-text="N">N</span> */}
                 </p>
+                <p aria-label="CodePen">
+                    <span data-text="A">A</span>
+                    <span data-text="N">N</span>
+                    <span data-text="Y">Y</span>
+                    <span data-text=" "> </span>
+                    <span data-text=" "> </span>
+                    <span data-text=" "> </span>
+                    <span data-text="W">W</span>
+                    <span data-text="O">O</span>
+                    <span data-text="R">R</span>
+                    <span data-text="D">D</span>
+                    {/* <span data-text="N">N</span> */}
+                </p>
             </div>
         )
     }
@@ -52,7 +81,8 @@ class SearchForm extends React.Component {
 
 function mdp(dispatch) {
     return {
-        changeWord: (word) => { dispatch({ type: "CHANGE_WORD", payload: word }) }
+        changeWord: (word) => { dispatch({ type: "CHANGE_WORD", payload: word }) },
+        changeLanguage: (code) => { dispatch({ type: "CHANGE_LANG", payload: code }) }
     }
 }
 

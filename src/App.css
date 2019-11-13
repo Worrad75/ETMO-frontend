@@ -9,20 +9,19 @@
 }
 
 .App #logo {
+  cursor: pointer;
   content:url("../src/assets/new_ETMO_logo.png");
   max-width:15%;
   height:auto;
+  margin-left: 10px;
   margin-top: 30px;
 }
 
 #personal-container {
-  height: 900px;
+  height: 1100px;
   background-color: aliceblue;
-}
-
-.favorites_cont {
-  align-content: center;
-  top: -200px;
+  background-image: url("./assets/profile_background.jpg");
+  background-size: cover;
 }
 
 .any_word {
@@ -32,6 +31,7 @@
 
 .history_cont {
   display: inline-block;
+  position: relative; right: 100px;
 }
 
 #search-spinner {
@@ -43,6 +43,18 @@
   position:relative; top: 250px;
   font-size: 60px;
   cursor: pointer;
+}
+
+#empty {
+  width: 700px;
+  height: 400px;
+  font-size: 35px;
+}
+
+#empty_img {
+  width: 150px;
+  height: 150px;
+  font-size: 35px;
 }
 
 #to-left {
@@ -66,15 +78,11 @@
 
 .form {
   height: 300px;
+  margin-top: -100px;
 }
 
 .word-search-form {
   position: relative; bottom: 30px
-}
-
-.favs_cont {
-  position:relative; top: 300px;
-  position:relative; left: 100px;
 }
 
 /* LOGIN // SIGNUP BUTTONS */
@@ -136,7 +144,7 @@ form.form1 {
   outline: none;
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.02);
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   text-align: center;
   margin-bottom: 27px;
   font-family: 'Ubuntu', sans-serif;
@@ -153,6 +161,7 @@ form.form1 {
   color: #fff;
   background: linear-gradient(to right, #9C27B0, #E040FB);
   border: 0;
+  margin-top: -10px;
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 10px;
@@ -165,7 +174,7 @@ form.form1 {
 .forgot {
   text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   color: #E1BEE7;
-  padding-top: 15px;
+  padding-top: 0px;
   cursor: pointer;
   font-size: 2em;
 }

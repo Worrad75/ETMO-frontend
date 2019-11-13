@@ -13,12 +13,9 @@ class Result extends React.Component {
             },
             body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id})
         })
-        .then(resp => resp.json())
-        .then(response => {
-            console.log("favorite: ", response)
-            console.log("redirecting to profile")
-            this.props.history.push(`/profile`)
-        })
+        // .then(resp => resp.json())
+        // .then(response => {
+        .then(this.props.history.push(`/search`))
     }
 
     addSearch = () => {
@@ -30,25 +27,26 @@ class Result extends React.Component {
             },
             body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id })
         })
-        .then(resp => resp.json())
-        .then(response => {
-            console.log("search: ", response)
-        })
+        // .then(resp => resp.json())
+        // .then(response => {
+        //     console.log("search: ", response)
+        // })
     }
 
     componentDidMount() {
         this.addSearch()
     }
 
+    syllabbify = (word) => {
+            const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
+            return word.match(syllableRegex);
+        }
+
     render() {
-        let addFavButton = <button onClick={() => this.addFavorite()} >add favorite</button>
-
         if (this.props.wordOBJ){
-            // console.log("REACHED RESULT")
-            // console.log("current user: ", this.props.currentUser)
-
             let etymologies = ""
             let definitions = ""
+            let examples
             let dialects = ""
             let phoneticSpelling = ""
             let phoneticSpellingComp = ""
@@ -59,8 +57,10 @@ class Result extends React.Component {
             }
             if (entries.senses) {
                 definitions = this.props.wordOBJ.entries[0].senses[0].definitions.map(def => <ResultComponent id={def} comp={def} key={def} />)
+                examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exmp => exmp.text).map(def => <ResultComponent id={def} comp={def} key={def} />)
             }
-            // let examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exp => <ResultComponent id={exp} comp={exp} />)
+
+
             if (this.props.wordOBJ.pronunciations !== undefined) {
                 dialects = this.props.wordOBJ.pronunciations[0].dialects.map(dia => <ResultComponent id={dia} comp={dia} key={dia} />)
                 phoneticSpelling = this.props.wordOBJ.pronunciations[0].phoneticSpelling
@@ -69,21 +69,34 @@ class Result extends React.Component {
                 }
             }
             
+            debugger
+
             return (
-                <div>
-                    result:
-                    <br/>
+                <div className="results_cont" >
+                    <div id="etymologies">
                     Etymologies: {etymologies}
-                    <br />
-                    Definitions: {definitions}
-                    <br />
-                    Dialects: {dialects}
-                    <br />
-                    Phonetic Spelling: {phoneticSpellingComp}
+                    </div>
+
+                    <div id="definitions">
+                        Definitions: {definitions}
+                    </div>
+
+                    <div id="dialects">
+                        Dialects: {dialects}
+                    </div>
+                    
+                    <div id="phoneticSpelling">
+                        Phonetic Spelling: {phoneticSpellingComp}
+                    </div>
+
+                    <div id="examples">
+                        Examples: {examples}
+                    </div>
+
                     {/* <br />          this is broken for some reason
                     Examples: {examples} */}
                     <br /><br />
-                    {this.props.currentUser ? addFavButton : ""}
+                    {this.props.currentUser ? <button onClick={() => this.addFavorite()} >add favorite</button> : ""}
                 </div>
             )
         } else {

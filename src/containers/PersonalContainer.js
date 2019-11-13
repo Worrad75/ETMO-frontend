@@ -69,9 +69,8 @@ class PersonalContainer extends React.Component {
         if (this.props.currentUser) {
             return (
                 <div id="personal-container">
-                    <button className="submit" onClick={() => this.props.history.push("search")}>GO TO SEARCH</button> 
                     <div className="card">
-                        
+
                         <div className="post main">
                             <div className="preview">This will show the number of <br/> favs and searches</div>
                             <div className="counter">2nd</div>
@@ -79,12 +78,15 @@ class PersonalContainer extends React.Component {
                             <div className="details">{this.props.currentUser.username}</div>
                         </div>
 
+                        <button className="submit" id="margin_50" onClick={() => this.props.history.push("search")}>GO TO SEARCH</button> 
+                        
                         <div className="personal-search">
                                 <input className="un" id="slim" name="favoritesFilter" value={this.state.favoritesFilter} onChange={this.handleChange} placeholder="Search Your Favorites" type="text" />
-                                <input className="un" id="slim" name="historyFilter" value={this.state.historyFilter} onChange={this.handleChange} placeholder="Search Your History" type="text" />
+                                <input className="un" id="slim" name="historyFilter" value={this.state.historyFilter} onChange={this.handleChange} placeholder="Search Your Searches" type="text" />
                                 <br /><br />
                         </div>
-
+                        Check <span id="history_color">Searches</span> or <span id="favorite_color">Favorites</span>
+                        <br /><br />
                         <label className="switch">
                             <input onClick={this.flipDisplay} type="checkbox"></input>
                             <span className="slider"></span>

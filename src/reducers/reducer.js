@@ -1,6 +1,7 @@
 const defaultState = {
     currentUser: null,
-    currentWord: ""
+    currentWord: "",
+    currentLang: "en-us"
 }
 
 function reducer(prevState = defaultState, action) {
@@ -16,6 +17,9 @@ function reducer(prevState = defaultState, action) {
         case "CHANGE_WORD":
             console.log("WORD IN REDUCER: ", action.payload)
             return {...prevState, currentWord: action.payload}
+        case "CHANGE_LANG":
+            console.log("LANGUAGE CODE IN REDUCER: ", action.payload)
+            return { ...prevState, currentLang: action.payload }
         default:
             return prevState
     }

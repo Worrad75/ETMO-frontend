@@ -1,10 +1,13 @@
  p {
-  color: #fff;
-  font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
-  font-size: 1em;
-  font-weight: 700;
+    margin-top: -30px;
+    margin-bottom: -20px;
+    color: #fff;
+    font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
+    font-size: 1em;
+    font-weight: 700;
 }
 p span {
+    margin-top:30px;
   display: inline-block;
   position: relative;
   -webkit-transform-style: preserve-3d;

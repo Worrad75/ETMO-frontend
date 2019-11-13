@@ -50,7 +50,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <img id="logo" alt="ETMO-logo"></img>
+        <img id="logo" alt="ETMO-logo" onClick={()=> this.redirect_to("profile")} ></img>
         <Switch>
           <Route path="/home" component={LandingPage} />
           <Route path="/profile" component={PersonalContainer} />

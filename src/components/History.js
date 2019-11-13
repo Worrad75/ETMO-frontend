@@ -1,12 +1,11 @@
 import React from "react";
 
 export default function History(props) {
-    // console.log("PROPS.WORD IN HISTORY OBJ: ", props.word )
     return (
-        <div className="post ter">
-            <div className="preview">PAST SEARCH</div>
-            <div className="counter">{props.word}</div>
-            <div className="detail">total searches: 0</div>
+        <div className="post sec">
+            <div id="history_background" className="preview">{props.word}</div>
+            <div className="counter">SEARCH</div>
+            <div className="detail">{/*total searches: 0*/}</div>
         </div>
     )
 
