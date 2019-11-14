@@ -53,7 +53,8 @@ class Result extends React.Component {
     // My favorite method in the entire app :)
     syllabbify = (word) => {
         const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
-        return word.match(syllableRegex);
+        let syllables = word.match(syllableRegex);
+        return syllables.join("•")
     }
 
     render() {
@@ -72,7 +73,7 @@ class Result extends React.Component {
             }
 
             if (entries.senses[0].examples) {
-                examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exmp => exmp.text).map(def => <ResultComponent id={def} comp={def} key={def} />)
+                examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exmp => exmp.text).map(def => <><ResultComponent id={def} comp={def} key={def} /> <br /></>)
             }
 
             if (entries.etymologies) {
@@ -87,12 +88,16 @@ class Result extends React.Component {
                 }
             }
             
+            let syllabbified = this.syllabbify(this.props.wordOBJ.text)
+
             debugger
 
             return (
                 <div className="results_cont" >
-                    {this.props.currentUser ? <button onClick={() => this.addFavorite()} >add favorite</button> : ""}
+                    {this.props.currentUser ? <button className="submit" onClick={() => this.addFavorite()} >add favorite</button> : ""}
                     <br /><br />
+
+                    <div id="central_word">{syllabbified}</div>
 
                     <div id="etymologies">
                         <div className="data-container">

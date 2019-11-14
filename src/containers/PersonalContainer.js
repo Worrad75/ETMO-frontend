@@ -67,12 +67,16 @@ class PersonalContainer extends React.Component {
         }
 
         if (this.props.currentUser) {
+
+            debugger
+
             return (
                 <div id="personal-container">
                     <div className="card">
 
                         <div className="post main">
-                            <div className="preview">This will show the number of <br/> favs and searches</div>
+                            <div className="preview">Total Favorites: {!faves ? "0" : faves.length} <br />
+                                Total Searches: {this.props.currentUser.searches.length}</div> 
                             <div className="counter">2nd</div>
                             <div className="detail">Welcome Back,</div>
                             <div className="details">{this.props.currentUser.username}</div>

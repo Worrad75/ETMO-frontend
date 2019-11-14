@@ -40,8 +40,8 @@ class ResultsContainer extends React.Component {
             fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/entries/${this.props.currentLang}/${this.props.currentWord}`, {
                 method: "GET",
                 headers: {
-                    "app_key": "de1bbe7446ae29aaaa81cc33a682a9bf",
-                    "app_id": "d654645f",
+                    "app_key": "157a656011578bfc28980ab27d1c2aa7",
+                    "app_id": "15353535",
                     "Content-Type": "application/json",
                     "Accept": "application/json"
             }})
@@ -62,8 +62,8 @@ class ResultsContainer extends React.Component {
         return (
             <div>
                 <br />
-                {this.state.wordOBJ.id ? <Result history={this.props.history} key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} /> : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
-                {/* {<img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />} */}
+                {this.state.wordOBJ.id ? <Result history={this.props.history} key={this.state.wordOBJ.word} wordOBJ={this.state.wordOBJ.results[0].lexicalEntries[0]} />
+                : <img id="search-spinner" src={require('../assets/new_spinner.gif')} alt="loading..." />}
             </div>
         )
     }
