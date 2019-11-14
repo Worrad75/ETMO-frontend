@@ -4,7 +4,13 @@ import Favorite from "../components/Favorite"
 export default class FavoritesContainer extends React.Component {
 
     state = {
-        favorites: this.props.favorites
+        favorites: []
+    }
+
+    componentDidMount() {
+        this.setState({
+            favorites: this.props.favorites
+        })
     }
 
     deleteFavorite = (id) => {
@@ -15,15 +21,17 @@ export default class FavoritesContainer extends React.Component {
         .then(resp => resp.json())
         .then(response => {
             console.log("deleted: ", response)
-            let freshFavs = {...this.state.favorites}.select(obj => obj.id !== response.id)
+            // debugger
+            let freshFavs = this.state.favorites.filter(obj => obj.id !== response.id)
             console.log("fresh: ", freshFavs)
-            // this.setState({
-            //     favorites: freshFavs
-            // }, console.log("done"))
+            this.setState({
+                favorites: freshFavs
+            }, console.log("done"))
     })
 }
 
     render() {
+        console.log("props:", this.props)
         let objs = this.state.favorites.map((favorite) => <Favorite key={favorite.id} favorite={favorite} deleteFavorite={this.deleteFavorite}></Favorite>)
         return (
             <div >
