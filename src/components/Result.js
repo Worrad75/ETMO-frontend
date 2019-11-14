@@ -74,20 +74,10 @@ class Result extends React.Component {
             
             return (
                 <div className="results_cont" >
-{/* 
-                    <a href="#">
-                        <h2>Some Text</h2>
-                        <h1>other text
-                        </h1>
-                        <img src="http://www.sheridanrogers.com.au/wp-content/uploads/2011/03/American-pancakes.jpg" />
-                    </a> */}
-
-
-                    
                     {this.props.currentUser ? <button onClick={() => this.addFavorite()} >add favorite</button> : ""}
                     <br /><br />
 
-                    <div className="etymologies">
+                    <div id="etymologies">
                         <div className="data-container">
                             <span id="etymo" className="btn">Etymologies</span>
                         </div>
@@ -96,21 +86,44 @@ class Result extends React.Component {
                         </div>
                     </div>
 
-                    {/* <div id="definitions">
-                        Definitions: {definitions}
+
+                    <div id="definitions">
+                        <div className="data-container">
+                            <span id="defs" className="btn">Definitions</span>
+                        </div>
+                        <div id="definitions_data">
+                            {definitions}
+                        </div>
+                    </div>
+                     
+                    <div id="dialects">
+                        <div className="data-container">
+                            <span id="dias" className="btn">Dialects</span>
+                        </div>
+                        <div id="dialects_data">
+                            {dialects}
+                        </div>
                     </div>
 
-                    <div id="dialects">
-                        Dialects: {dialects}
-                    </div>
-                    
-                    <div id="phoneticSpelling">
-                        Phonetic Spelling: {phoneticSpellingComp}
+                    <div id="phonetics">
+                        <div className="data-container">
+                            <span id="phon" className="btn">Phonetic Spelling</span>
+                        </div>
+                        <div id="phonetics_data">
+                            {phoneticSpellingComp}
+                        </div>
                     </div>
 
                     <div id="examples">
-                        Examples: {examples}
-                    </div> */}
+                        <div className="data-container">
+                            <span id="exam" className="btn">Examples</span>
+                        </div>
+                        <div id="examples_data">
+                            Examples: {examples}
+                        </div>
+                    </div>
+
+                    
                 </div>
             )
         } else {

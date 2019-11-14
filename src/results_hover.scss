@@ -1,7 +1,5 @@
-body{
-	margin:0;
-	padding:0;
-}
+
+// shifting button for result components
 
 .btn{
 cursor:pointer;
@@ -42,6 +40,8 @@ cursor:pointer;
 	}
 }
 
+// data container fixing
+
 .data-container{
     margin-left: 100px;
     margin-top: 0px;
@@ -53,8 +53,20 @@ cursor:pointer;
 	align-items:center;
 }
 
-// CUSTOM
+// HOVER TO DISPLAY
 
 .data-container:hover + #etymologies_data {
-    display: block;
+    opacity: 1;
+}
+.data-container:hover + #definitions_data {
+    opacity: 1;
+}
+.data-container:hover + #dialects_data {
+    opacity: 1;
+}
+.data-container:hover + #phonetics_data {
+    opacity: 1;
+}
+.data-container:hover + #examples_data {
+    opacity: 1;
 }
