@@ -1,8 +1,14 @@
 
 /* divs in Result */
 
-#etymologies {
+.etymologies {
+  width: 400px;
+  text-align: center;
+  margin-right: 200px;
+}
 
+#etymologies_data {
+  display: none;
 }
 
 #definitions {

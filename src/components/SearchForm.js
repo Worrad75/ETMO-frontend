@@ -48,9 +48,7 @@ class SearchForm extends React.Component {
                     </select>
                 </div>
 
-
                 {/* <h1 className="any_word" data-heading="any word">filler</h1> */}
-
 
                 <p aria-label="CodePen">
                     <span data-text="S">S</span>
@@ -59,7 +57,6 @@ class SearchForm extends React.Component {
                     <span data-text="R">R</span>
                     <span data-text="C">C</span>
                     <span data-text="H">H</span>
-                    {/* <span data-text="N">N</span> */}
                 </p>
                 <p aria-label="CodePen">
                     <span data-text="A">A</span>
@@ -72,7 +69,6 @@ class SearchForm extends React.Component {
                     <span data-text="O">O</span>
                     <span data-text="R">R</span>
                     <span data-text="D">D</span>
-                    {/* <span data-text="N">N</span> */}
                 </p>
             </div>
         )
@@ -93,16 +89,3 @@ function msp(storedState) {
 }
 
 export default connect(msp, mdp)(SearchForm)
-
-
-
-
-/* <div id="container">
-                    understand
-                    <div id="flip">
-                        <div><div>Your</div></div>
-                        <div><div>Words</div></div>
-                        <div><div>Favorite</div></div>
-                    </div>
-                    better
-                </div> */

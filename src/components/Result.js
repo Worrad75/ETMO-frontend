@@ -1,6 +1,9 @@
 import React from "react";
 import ResultComponent from "./ResultComponent";
 import { connect } from 'react-redux';
+import "../results.css"
+import "../results_hover.scss"
+
 
 class Result extends React.Component {
 
@@ -13,8 +16,6 @@ class Result extends React.Component {
             },
             body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id})
         })
-        // .then(resp => resp.json())
-        // .then(response => {
         .then(this.props.history.push(`/search`))
     }
 
@@ -38,28 +39,30 @@ class Result extends React.Component {
     }
 
     syllabbify = (word) => {
-            const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
-            return word.match(syllableRegex);
-        }
+        const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
+        return word.match(syllableRegex);
+    }
+
 
     render() {
         if (this.props.wordOBJ){
-            let etymologies = ""
+            
             let definitions = ""
-            let examples
+            let examples = []
             let dialects = ""
+            let etymologies = ""
             let phoneticSpelling = ""
             let phoneticSpellingComp = ""
             let entries = this.props.wordOBJ.entries[0]
-            
-            if (entries.etymologies) {
-                etymologies = this.props.wordOBJ.entries[0].etymologies.map(ety => <ResultComponent id={ety} comp={ety} key={ety} />)
-            }
+
             if (entries.senses) {
                 definitions = this.props.wordOBJ.entries[0].senses[0].definitions.map(def => <ResultComponent id={def} comp={def} key={def} />)
                 examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exmp => exmp.text).map(def => <ResultComponent id={def} comp={def} key={def} />)
             }
 
+            if (entries.etymologies) {
+                etymologies = this.props.wordOBJ.entries[0].etymologies.map(ety => <><ResultComponent id={ety} comp={ety} key={ety} /><br /></>)
+            }
 
             if (this.props.wordOBJ.pronunciations !== undefined) {
                 dialects = this.props.wordOBJ.pronunciations[0].dialects.map(dia => <ResultComponent id={dia} comp={dia} key={dia} />)
@@ -69,15 +72,31 @@ class Result extends React.Component {
                 }
             }
             
-            debugger
-
             return (
                 <div className="results_cont" >
-                    <div id="etymologies">
-                    Etymologies: {etymologies}
+{/* 
+                    <a href="#">
+                        <h2>Some Text</h2>
+                        <h1>other text
+                        </h1>
+                        <img src="http://www.sheridanrogers.com.au/wp-content/uploads/2011/03/American-pancakes.jpg" />
+                    </a> */}
+
+
+                    
+                    {this.props.currentUser ? <button onClick={() => this.addFavorite()} >add favorite</button> : ""}
+                    <br /><br />
+
+                    <div className="etymologies">
+                        <div className="data-container">
+                            <span id="etymo" className="btn">Etymologies</span>
+                        </div>
+                        <div id="etymologies_data">
+                            {etymologies}
+                        </div>
                     </div>
 
-                    <div id="definitions">
+                    {/* <div id="definitions">
                         Definitions: {definitions}
                     </div>
 
@@ -91,12 +110,7 @@ class Result extends React.Component {
 
                     <div id="examples">
                         Examples: {examples}
-                    </div>
-
-                    {/* <br />          this is broken for some reason
-                    Examples: {examples} */}
-                    <br /><br />
-                    {this.props.currentUser ? <button onClick={() => this.addFavorite()} >add favorite</button> : ""}
+                    </div> */}
                 </div>
             )
         } else {
