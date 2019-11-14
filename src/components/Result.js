@@ -16,7 +16,15 @@ class Result extends React.Component {
             },
             body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id})
         })
-        .then(this.props.history.push(`/search`))
+        .then(resp => resp.json())
+        .then(response => {
+            console.log("new favorite after fetch: ", response)
+            let newUser = {...this.props.currentUser}
+            newUser.favorites.push(response)
+            console.log("new user: ", newUser)
+            this.props.addNewFavorite(newUser)
+        })
+        .then(this.props.history.push(`/profile`))
     }
 
     addSearch = () => {
@@ -28,21 +36,25 @@ class Result extends React.Component {
             },
             body: JSON.stringify({ word: this.props.wordOBJ.text, user_id: this.props.currentUser.id })
         })
-        // .then(resp => resp.json())
-        // .then(response => {
-        //     console.log("search: ", response)
-        // })
+        .then(resp => resp.json())
+        .then(response => {
+            console.log("new searches after fetch: ", response)
+            let newUser = {...this.props.currentUser}
+            newUser.searches.push(response)
+            console.log("new user: ", newUser)
+            this.props.addNewSearch(newUser)
+        })
     }
 
     componentDidMount() {
         this.addSearch()
     }
 
+    // My favorite method in the entire app :)
     syllabbify = (word) => {
         const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
         return word.match(syllableRegex);
     }
-
 
     render() {
         if (this.props.wordOBJ){
@@ -57,6 +69,9 @@ class Result extends React.Component {
 
             if (entries.senses) {
                 definitions = this.props.wordOBJ.entries[0].senses[0].definitions.map(def => <ResultComponent id={def} comp={def} key={def} />)
+            }
+
+            if (entries.senses[0].examples) {
                 examples = this.props.wordOBJ.entries[0].senses[0].examples.map(exmp => exmp.text).map(def => <ResultComponent id={def} comp={def} key={def} />)
             }
 
@@ -72,6 +87,8 @@ class Result extends React.Component {
                 }
             }
             
+            debugger
+
             return (
                 <div className="results_cont" >
                     {this.props.currentUser ? <button onClick={() => this.addFavorite()} >add favorite</button> : ""}
@@ -92,7 +109,7 @@ class Result extends React.Component {
                             <span id="defs" className="btn">Definitions</span>
                         </div>
                         <div id="definitions_data">
-                            {definitions}
+                            {definitions.length > 0 ? definitions : "unavailable"}
                         </div>
                     </div>
                      
@@ -101,7 +118,7 @@ class Result extends React.Component {
                             <span id="dias" className="btn">Dialects</span>
                         </div>
                         <div id="dialects_data">
-                            {dialects}
+                            {dialects.length > 0 ? dialects : "unavailable"}
                         </div>
                     </div>
 
@@ -110,7 +127,7 @@ class Result extends React.Component {
                             <span id="phon" className="btn">Phonetic Spelling</span>
                         </div>
                         <div id="phonetics_data">
-                            {phoneticSpellingComp}
+                            {phoneticSpellingComp.length > 0 ? phoneticSpellingComp : "unavailable"}
                         </div>
                     </div>
 
@@ -119,7 +136,7 @@ class Result extends React.Component {
                             <span id="exam" className="btn">Examples</span>
                         </div>
                         <div id="examples_data">
-                            Examples: {examples}
+                            {examples.length > 0 ? examples : "unavailable" }
                         </div>
                     </div>
 
@@ -140,4 +157,11 @@ function msp(storedState) {
     }
 }
 
-export default connect(msp, {})(Result)
+function mdp(dispatch) {
+    return {
+        addNewFavorite: (user) => { dispatch({ type: "ADD_FAV", payload: user }) },
+        addNewSearch: (user) => { dispatch({ type: "ADD_SEARCH", payload: user }) }
+    }
+}
+
+export default connect(msp, mdp)(Result)

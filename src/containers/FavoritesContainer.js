@@ -24,7 +24,6 @@ export default class FavoritesContainer extends React.Component {
 }
 
     render() {
-        console.log("in favs cont")
         let objs = this.state.favorites.map((favorite) => <Favorite key={favorite.id} favorite={favorite} deleteFavorite={this.deleteFavorite}></Favorite>)
         return (
             <div >

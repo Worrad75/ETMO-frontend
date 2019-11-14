@@ -56,7 +56,7 @@ class PersonalContainer extends React.Component {
 
     render() {
 
-        console.log("display: ", this.state.displayFavorites)
+        console.log("current user: ", this.props.currentUser)
 
         let faves = [];
         let hist = [];

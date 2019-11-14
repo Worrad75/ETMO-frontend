@@ -14,6 +14,12 @@ function reducer(prevState = defaultState, action) {
             console.log("logging in")
             localStorage.user_id = action.payload.id
             return { ...prevState, currentUser: action.payload}
+        case "ADD_FAV":
+            console.log("adding favorite")
+            return { ...prevState, currentUser: action.payload }
+        case "ADD_SEARCH":
+            console.log("adding favorite")
+            return { ...prevState, currentUser: action.payload }
         case "CHANGE_WORD":
             console.log("WORD IN REDUCER: ", action.payload)
             return {...prevState, currentWord: action.payload}
