@@ -27,7 +27,7 @@
 #definitions {
   width: 400px;
   text-align: center;
-  position: relative; left: 475px; bottom: -50px;
+  position: relative; left: 475px; bottom: -10px;
   /* right and down */
 }
 
@@ -86,7 +86,7 @@ body {
 
 .box {
   position: absolute;
-  margin-top: -70px;
+  margin-top: -115px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

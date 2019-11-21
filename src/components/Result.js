@@ -7,6 +7,13 @@ import "../results_hover.scss"
 
 class Result extends React.Component {
 
+    componentDidMount() {
+        window.scroll({
+            top: 0,
+            behavior: 'auto'
+        })
+    }
+
     addFavorite =()=> {
         fetch("http://localhost:3000/favorite_word", {
             method: "POST",
@@ -55,7 +62,7 @@ class Result extends React.Component {
         const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
         let syllables = word.match(syllableRegex);
         return syllables.join("•")
-    }
+    } 
 
     render() {
         if (this.props.wordOBJ){
@@ -96,6 +103,9 @@ class Result extends React.Component {
                 <div className="results_cont" >
                     {this.props.currentUser ? <button className="submit" onClick={() => this.addFavorite()} >add favorite</button> : ""}
                     <br /><br />
+                    <button className="submit" onClick={() => this.props.history.push(`/search`)} >search another word</button>
+                    <br /><br />
+
 
                     <div id="central_word">{syllabbified}</div>
 

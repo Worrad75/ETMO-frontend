@@ -43,7 +43,7 @@ class LandingPage extends React.Component {
                     <Login setUser={this.setUser} />
                     <br/><br />
                     <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
-                    <br />
+                    <br /><br />
                 </div>
             } else {
                 loggedOut =
@@ -51,7 +51,7 @@ class LandingPage extends React.Component {
                     <Signup setUser={this.setUser} />
                     <br /><br />
                     <p className="forgot" onClick={this.switchHandler}>{this.state.toggleLoginSignup ? "I want an account" : "I already have an account"}</p>
-                    <br />
+                    <br /><br />
                 </div>
             }
 

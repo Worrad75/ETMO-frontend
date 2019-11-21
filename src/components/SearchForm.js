@@ -10,6 +10,10 @@ class SearchForm extends React.Component {
         searchTerm: ""
     }
 
+    componentDidMount() {
+        window.scroll({ top: 0, behavior: 'auto' })
+    }
+
     submitHandler = (e, searchTerm) => {
         e.preventDefault()
         this.props.changeWord(searchTerm.toLowerCase())
@@ -19,7 +23,7 @@ class SearchForm extends React.Component {
     langChange = (e) => {
         e.preventDefault()
         this.props.changeLanguage(e.target.value)
-        // this.props.history.push(`/search`) ??
+        this.props.history.push(`/search`)
     }
 
     onChange = e => {
@@ -44,32 +48,34 @@ class SearchForm extends React.Component {
                     <select onChange={this.langChange}>
                         <option value="en-us" >American English</option>
                         <option value="es" >Spanish</option>
-                        <option value="en" >German</option>
+                        <option value="en" >German (coming soon)</option>
                     </select>
                 </div>
 
                 {/* <h1 className="any_word" data-heading="any word">filler</h1> */}
 
-                <p aria-label="CodePen">
-                    <span data-text="S">S</span>
-                    <span data-text="E">E</span>
-                    <span data-text="A">A</span>
-                    <span data-text="R">R</span>
-                    <span data-text="C">C</span>
-                    <span data-text="H">H</span>
-                </p>
-                <p aria-label="CodePen">
-                    <span data-text="A">A</span>
-                    <span data-text="N">N</span>
-                    <span data-text="Y">Y</span>
-                    <span data-text=" "> </span>
-                    <span data-text=" "> </span>
-                    <span data-text=" "> </span>
-                    <span data-text="W">W</span>
-                    <span data-text="O">O</span>
-                    <span data-text="R">R</span>
-                    <span data-text="D">D</span>
-                </p>
+                <div className="codepen">
+                    <p aria-label="CodePen">
+                        <span data-text="S">S</span>
+                        <span data-text="E">E</span>
+                        <span data-text="A">A</span>
+                        <span data-text="R">R</span>
+                        <span data-text="C">C</span>
+                        <span data-text="H">H</span>
+                    </p>
+                    <p aria-label="CodePen">
+                        <span data-text="A">A</span>
+                        <span data-text="N">N</span>
+                        <span data-text="Y">Y</span>
+                        <span data-text=" "> </span>
+                        <span data-text=" "> </span>
+                        <span data-text=" "> </span>
+                        <span data-text="W">W</span>
+                        <span data-text="O">O</span>
+                        <span data-text="R">R</span>
+                        <span data-text="D">D</span>
+                    </p>
+                </div>
             </div>
         )
     }

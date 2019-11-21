@@ -36,7 +36,7 @@ export default class FavoritesContainer extends React.Component {
         return (
             <div >
                 {objs.length > 0 ? objs : <div id="empty" > <br /> <br /> <br /><br /> <br /><br /> You don't have any favorites yet :( <br /><br /><br /><br />
-                    <img id="empty_img" src={require('../assets/sad.png')} />
+                    <img alt="empty" id="empty_img" src={require('../assets/sad.png')} />
                     <br /> <br /><br /> Try searching for some!</div>}
             </div>
         )
