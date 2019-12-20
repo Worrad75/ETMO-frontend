@@ -12,7 +12,6 @@ class ResultsContainer extends React.Component {
     }
 
     componentDidMount() {
-        console.log("props", this.props)
         this.getWordInfo()
     }
 
@@ -56,9 +55,6 @@ class ResultsContainer extends React.Component {
     }
 
     render() {
-        if (this.state.wordOBJ.results) {
-            console.log(this.state.wordOBJ.results[0].lexicalEntries[0])
-        }
         return (
             <div>
                 <br />

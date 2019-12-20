@@ -27,7 +27,6 @@ export default class Signup extends React.Component {
             })
             .then(resp => resp.json())
             .then(response => {
-                console.log(response)
                 if (response.errors) {
                     alert(response.errors)
                 } else {

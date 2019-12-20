@@ -14,16 +14,12 @@ export default class FavoritesContainer extends React.Component {
     }
 
     deleteFavorite = (id) => {
-        console.log("deleting fav #", id)
         return fetch(`http://localhost:3000/unfavorite_word/${id}`, {
             method: "DELETE"
         })
         .then(resp => resp.json())
         .then(response => {
-            console.log("deleted: ", response)
-            // debugger
             let freshFavs = this.state.favorites.filter(obj => obj.id !== response.id)
-            console.log("fresh: ", freshFavs)
             this.setState({
                 favorites: freshFavs
             }, console.log("done"))
@@ -31,7 +27,6 @@ export default class FavoritesContainer extends React.Component {
 }
 
     render() {
-        console.log("props:", this.props)
         let objs = this.state.favorites.map((favorite) => <Favorite key={favorite.id} favorite={favorite} deleteFavorite={this.deleteFavorite}></Favorite>)
         return (
             <div >

@@ -25,10 +25,8 @@ class Result extends React.Component {
         })
         .then(resp => resp.json())
         .then(response => {
-            console.log("new favorite after fetch: ", response)
             let newUser = {...this.props.currentUser}
             newUser.favorites.push(response)
-            console.log("new user: ", newUser)
             this.props.addNewFavorite(newUser)
         })
         .then(this.props.history.push(`/profile`))
@@ -45,10 +43,8 @@ class Result extends React.Component {
         })
         .then(resp => resp.json())
         .then(response => {
-            console.log("new searches after fetch: ", response)
             let newUser = {...this.props.currentUser}
             newUser.searches.push(response)
-            console.log("new user: ", newUser)
             this.props.addNewSearch(newUser)
         })
     }

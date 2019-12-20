@@ -36,7 +36,6 @@ class PersonalContainer extends React.Component {
     findFavs = () => {
         if (!!this.props.currentUser && this.state.favoritesFilter !== "") {
             let faves = this.props.currentUser.favorites.filter(fav => fav.word.includes(this.state.favoritesFilter) )
-            console.log("finding new favs:", faves)
             return faves
         } else if (!!this.props.currentUser) {
             return this.props.currentUser.favorites
@@ -46,7 +45,6 @@ class PersonalContainer extends React.Component {
     findHistory = () => {
         if (!!this.props.currentUser && this.state.historyFilter !== "") {
             let faves = this.props.currentUser.searches.filter(fav => fav.word.includes(this.state.historyFilter))
-            console.log("finding new favs:", faves)
             return faves
         } else if (!!this.props.currentUser) {
             return this.props.currentUser.searches
@@ -55,9 +53,6 @@ class PersonalContainer extends React.Component {
 
 
     render() {
-
-        console.log("current user: ", this.props.currentUser)
-
         let faves = [];
         let hist = [];
         if (this.state.displayFavorites) {
@@ -67,7 +62,6 @@ class PersonalContainer extends React.Component {
         }
 
         if (this.props.currentUser) {
-
             return (
                 <div id="personal-container">
                     <div className="card">

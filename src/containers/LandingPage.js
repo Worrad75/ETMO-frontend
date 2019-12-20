@@ -12,7 +12,6 @@ class LandingPage extends React.Component {
     }
 
     setUser = (user) => {
-        console.log("setting user:", user)
         this.props.loginUser(user)
         this.props.history.push("profile")
     }
